@@ -22,52 +22,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- web-fonts -->
 <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 <!-- //web-fonts -->
-<script>
-var x;
-function save()
-{
-x= new XMLHttpRequest();
-var a= document.getElementById("id").value;
-var b= document.getElementById("fname").value;
-var c= document.getElementById("lname").value;
-var d= document.getElementById("email").value;
-var e= document.getElementById("phone").value;
-var f= document.getElementById("address").value;
-var g= document.getElementById("pass").value;
-var h= document.getElementById("repass").value;
-var i= document.getElementById("dob").value;
-var j= document.getElementById("gender").value;
-	x.open("POST","save?id="+a+"&fname="+b+"&lname="+c+"&email="+d+"&phone="+e+"&address="+f+"&pass="+g+"&repass="+h+"&dob="+i+"&gender="+j,true);
-	x.onreadystatechange=abc;
-	x.send(null);
-}
-
-function abc()
-{
-	if(x.readyState==4)
-		{
-		if(x.responseText=="welcome to my facebook")
-			{
-			location="login.jsp";
-			}
-		
-		}
-	
-	
-	
-}
-
-
-
-
-
-
-
-</script>
-
-
-
-
 
 </head>
 <body>
@@ -82,30 +36,29 @@ function abc()
 			<div class="wthree-pro">
 				<h2>welcome!<br>Sign Up to Troubleshooter</h2>
 			</div>
-			<div class="sub-main-w3">	
-				<form  method="post">
-					<input placeholder="Username!" name="id" type="text" required="" id="id">
-					<input placeholder="First Name" name="fname" type="text" id="fname" required="">
-					<input placeholder="Last Name" name="lname" type="text" id="lname" required="">
+			<div class="sub-main-w3">
+			    <div> <h4><%=request.getAttribute("error") %></h4></div>	
+				<form action="SignUp" method="get">
+					<input placeholder="Name" name="name" type="text" id="name" required="">
 					<input placeholder="E-mail" name="email" type="email" id="email" required="">
 					<input  placeholder="Phone Number" name="phone" type="tel" id="phone" required="">
-					<input  placeholder="Address" name="address" type="text" id="address" required="">
 					<input placeholder="Password" name="pass" type="password" id="pass" required="">
 					<input placeholder="Re-Enter Password" name="repass" id="repass" type="password" required="">
-					
 					<input  placeholder="Date of birth" name="dob" type="date" id="dob"  required=""><br>
+					<br>
 					<input type="radio" value="male" name="gender" id="gender">Male
-					<input type="radio" value="female" name="gender" id="gender">Female<br>
-					
-					<input type="button" value="SignUp Now" onclick="save()" ><br>
-					<a href="login.jsp" type="text"  >Already a member? login</a>
+					<input type="radio" value="female" name="gender" id="gender">Female<br><hr>
+					<input type="submit" value="SignUp Now" ><br>
+					<a href="login.jsp" type="text"  >Already a member? login</a><br><br>
+					<a href="forgot.jsp" type="text"  >forgot password?</a>
 				 </form>
+				 
 			</div>
 		</div>
 		<!--//main-->
 		<!--footer-->
 		<div class="footer">
-			<p>&copy; 2018 Business Subscription Form. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			<p>&copy; 2018 Business Subscription Form. All rights reserved | Design by <a href="https://www.facebook.com/hiadityag">Aditya Gupta</a></p>
 		</div>
 		<!--//footer-->
 	</div>
