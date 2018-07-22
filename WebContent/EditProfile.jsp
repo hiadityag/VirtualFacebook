@@ -4,12 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
-<html lang="en">
+<%@taglib prefix="t" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <title>TroubleShooter</title>
 <!-- Meta tag Keywords -->
@@ -26,32 +21,41 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- web-fonts -->
 <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 <!-- //web-fonts -->
-
-
 </head>
 <body>
-    
-    
-    	<div class="center-container">
+  <t:forEach var="u" items="${EditData}">
+	<div class="center-container" >
 		<!--header-->
 		<div class="header-w3l">
-			<h1><span>T</span>ouble<span>S</span>ooter <span>L</span>ogin </h1>
+			<h1><span>W</span>elcome <span></span> </h1>
 		</div>
 		<!--//header-->
 		<!--main-->
-		<div class="main-content-agile">
-			<div class="wthree-pro">
-				<h2>welcome,Login to Troubleshooter</h2>
-			</div>
-			<div class="sub-main-w3">	
-				<form action="Login" method="get">
-					<input placeholder="Username!" name="email1" id="email1" type="text" required="">
-					<input placeholder="Password" name="pass1" id="pass1" type="password" required="">
-					<input type="submit" value="Login"><br><hr>
-					<a href="forgot.jsp" type="text"  >Forgot password?</a>
+		<div class="main-content-agile" >
+			<div class="sub-main-w3" style="position:relative;right:50%;">	
+				<form action="Update" method="post">
+					<input placeholder="Username!" name="rname" id="rname" type="text" value="<t:out value="${u.name}"/>" required="">
+					<input placeholder="E-mail" name="remail" id="remail" value="<t:out value="${u.email}"/>" type="email" required="">
+					<input  placeholder="Phone Number" name="rphone" id="rphone" value="<t:out value="${u.phone}"/>" type="tel" required="">
+					<input placeholder="Password" name="rpass" id="rpass"type="text" value="<t:out value="${u.pass}"/>" required="">
+					
+					<input  name="rdob" id="rdob" value="<t:out value="${u.dob}"/>" type="date" required=""><br><hr>
+					<t:choose>
+					<t:when test = "${u.gender == 'male'}">
+       
+      
+					<input type="radio" value="male" name="rgender" id="rgender" checked>Male
+					<input type="radio" value="female" name="rgender" id="rgender">Female<br><hr>
+					</t:when>
+					<t:otherwise>
+					<input type="radio" value="male" name="rgender" id="rgender">Male
+					<input type="radio" value="female" name="rgender" id="rgender" checked>Female<br><hr>
+					</t:otherwise>
+					</t:choose>
+					<input type="submit" value="Update">
 				</form>
 			</div>
-			<div ><%=request.getAttribute("error") %></div>
+			</t:forEach>
 		</div>
 		<!--//main-->
 		<!--footer-->
